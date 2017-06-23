@@ -11,7 +11,7 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		System.setProperty("org.lwjgl.opengl.Window.undecorated", "true");
 		config.title = "TuWar Game";
-		config.height = 310;
+		config.height = 360;
 		config.width = 640;
 		config.resizable = false;
 		config.addIcon("data/imagenes/generales/icono.gif", Files.FileType.Internal);

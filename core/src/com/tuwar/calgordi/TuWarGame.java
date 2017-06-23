@@ -11,9 +11,13 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.utils.Align;
 import javafx.scene.paint.Color;
+import jdk.nashorn.internal.runtime.Debug;
+import jdk.nashorn.internal.runtime.RecompilableScriptFunctionData;
 import sun.font.TrueTypeFont;
 
 
@@ -30,8 +34,14 @@ public class TuWarGame extends ApplicationAdapter {
 	private Sprite fondoIzquierdaSprite ;
 
 	private TextField nombreUsuario;
+	private TextField contraUsuario;
 	private TextField.TextFieldStyle textFieldStyle;
-	private Skin skinInputText;
+	private Skin skin;
+
+	private CheckBox recordarCuenta;
+	private CheckBox.CheckBoxStyle recordarCuentaStyle;
+
+
 	private TextureAtlas inicioAtlas;
 	@Override
 	public void create () {
@@ -61,19 +71,52 @@ public class TuWarGame extends ApplicationAdapter {
 		//Estilo del textField
 		textFieldStyle = new TextField.TextFieldStyle();
 		textFieldStyle.font = fuente;
-		textFieldStyle.fontColor= new com.badlogic.gdx.graphics.Color(0,0,0,1);
-		skinInputText = new Skin();
-		skinInputText.addRegions(inicioAtlas);
-		textFieldStyle.background = skinInputText.getDrawable("FieldText");
+		skin = new Skin();
+		skin.addRegions(inicioAtlas);
+		textFieldStyle.messageFontColor = new com.badlogic.gdx.graphics.Color(1,1,1,0.5f);
+		textFieldStyle.fontColor= new com.badlogic.gdx.graphics.Color(1,1,1,0.6f);
+		textFieldStyle.background = skin.getDrawable("FieldText");
 
 		//Texts fields
 		nombreUsuario = new TextField("", textFieldStyle);
 		nombreUsuario.setMessageText("Nombre usuario");
-		nombreUsuario.setBounds(ancho * 3/5, alto *11/16, ancho * 2/5, alto * 2/10);
+		nombreUsuario.setBounds(ancho * 3/5, alto *11/16, ancho * 2/5, alto / 5);
+		nombreUsuario.setAlignment(Align.bottomLeft);
 		nombreUsuario.setMaxLength(15);
 
+		// TextField Password
 
+		contraUsuario = new TextField("", textFieldStyle);
+		contraUsuario.setMessageText("Contraseña");
+		contraUsuario.setBounds(ancho * 3/5, alto *8/16, ancho * 2/5, alto /5);
+		contraUsuario.setAlignment(Align.bottomLeft);
+		contraUsuario.setPasswordMode(true);
+		contraUsuario.setPasswordCharacter('x');
+		contraUsuario.setMaxLength(15);
+
+		//Tamaño de la letra y donde empiezan los inputs (Modificar donde cada uno porq es distinto segun ancho pantalla
+		float anchoNU = nombreUsuario.getWidth();
+		float altoNU = nombreUsuario.getHeight();
+		fuente.getData().setScale(anchoNU * 0.55f/256);
+		textFieldStyle.background.setLeftWidth(anchoNU*2/9 );
+		textFieldStyle.background.setBottomHeight(altoNU*2/9);
+		textFieldStyle.background.setTopHeight(altoNU*2/9);
+		textFieldStyle.background.setRightWidth(anchoNU*2/9);
+
+		//CheckBox style
+		recordarCuentaStyle = new CheckBox.CheckBoxStyle();
+		recordarCuentaStyle.font = fuente;
+		skin = new Skin();
+		skin.addRegions(inicioAtlas);
+		recordarCuentaStyle.checkboxOff = skin.getDrawable("CheckBox");
+		recordarCuentaStyle.checkboxOn = skin.getDrawable("CheckBoxAceptado");
+
+		//CheckBox
+		recordarCuenta = new CheckBox("", recordarCuentaStyle);
+		recordarCuenta.setBounds(ancho * 53/80, alto *6/16, alto*64/360, alto*64/360);
 		stage.addActor(nombreUsuario);
+		stage.addActor(contraUsuario);
+		stage.addActor(recordarCuenta);
 	}
 
 
