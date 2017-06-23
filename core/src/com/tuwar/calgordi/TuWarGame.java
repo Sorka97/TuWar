@@ -70,6 +70,8 @@ public class TuWarGame extends ApplicationAdapter {
 		nombreUsuario = new TextField("", textFieldStyle);
 		nombreUsuario.setMessageText("Nombre usuario");
 		nombreUsuario.setBounds(ancho * 3/5, alto *11/16, ancho * 2/5, alto * 2/10);
+		nombreUsuario.setMaxLength(15);
+
 
 		stage.addActor(nombreUsuario);
 	}
