@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.utils.Align;
 import javafx.scene.paint.Color;
@@ -41,7 +42,9 @@ public class TuWarGame extends ApplicationAdapter {
 	private CheckBox recordarCuenta;
 	private CheckBox.CheckBoxStyle recordarCuentaStyle;
 
-
+	private TextButton iniciarSesion;
+	private TextButton crearCuenta;
+	private TextButton.TextButtonStyle textButtonStyle;
 	private TextureAtlas inicioAtlas;
 	@Override
 	public void create () {
@@ -97,7 +100,7 @@ public class TuWarGame extends ApplicationAdapter {
 		//Tamaño de la letra y donde empiezan los inputs (Modificar donde cada uno porq es distinto segun ancho pantalla
 		float anchoNU = nombreUsuario.getWidth();
 		float altoNU = nombreUsuario.getHeight();
-		fuente.getData().setScale(anchoNU * 0.55f/256);
+		textFieldStyle.font.getData().setScale(anchoNU * 0.55f/256);
 		textFieldStyle.background.setLeftWidth(anchoNU*2/9 );
 		textFieldStyle.background.setBottomHeight(altoNU*2/9);
 		textFieldStyle.background.setTopHeight(altoNU*2/9);
@@ -106,17 +109,39 @@ public class TuWarGame extends ApplicationAdapter {
 		//CheckBox style
 		recordarCuentaStyle = new CheckBox.CheckBoxStyle();
 		recordarCuentaStyle.font = fuente;
-		skin = new Skin();
-		skin.addRegions(inicioAtlas);
 		recordarCuentaStyle.checkboxOff = skin.getDrawable("CheckBox");
 		recordarCuentaStyle.checkboxOn = skin.getDrawable("CheckBoxAceptado");
 
 		//CheckBox
 		recordarCuenta = new CheckBox("", recordarCuentaStyle);
 		recordarCuenta.setBounds(ancho * 53/80, alto *6/16, alto*64/360, alto*64/360);
+
+
+		// Button style
+		textButtonStyle = new TextButton.TextButtonStyle();
+		textButtonStyle.font = fuente;
+		textButtonStyle.fontColor= new com.badlogic.gdx.graphics.Color(1,1,1,0.6f);
+		textButtonStyle.up = skin.getDrawable("buttonSkin");
+		textButtonStyle.down = skin.getDrawable("buttonSkin2");
+
+		//Botones
+		iniciarSesion = new TextButton("", textButtonStyle);
+		iniciarSesion.setText("INICIAR SESION");
+		iniciarSesion.setBounds(ancho * 3/5, alto *3/16, ancho * 2/5, alto / 5);
+		iniciarSesion.align(Align.center);
+
+		crearCuenta = new TextButton("", textButtonStyle);
+		crearCuenta.setText("CREAR CUENTA");
+		crearCuenta.setBounds(ancho * 3/5, alto /100, ancho * 2/5, alto / 5);
+		crearCuenta.align(Align.center);
+
+		textButtonStyle.font.getData().setScale(anchoNU * 0.55f/256);
+
 		stage.addActor(nombreUsuario);
 		stage.addActor(contraUsuario);
 		stage.addActor(recordarCuenta);
+		stage.addActor(iniciarSesion);
+		stage.addActor(crearCuenta);
 	}
 
 
