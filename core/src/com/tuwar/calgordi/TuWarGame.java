@@ -20,7 +20,6 @@ public class TuWarGame extends ApplicationAdapter {
 	//HOLA DAVID
 	private SpriteBatch batch; // Cosas que el usuario no interactua
 	private Stage stage; // Cosas que el usuario interactua
-	private AssetManager assets; // Cosas a cargar
 
 	// Ancho y alto de la pantalla
 	private int ancho;
@@ -37,7 +36,6 @@ public class TuWarGame extends ApplicationAdapter {
 	private TextField.TextFieldStyle textFieldStyle;
 	private Skin skinTF;
 
-	private BitmapFont fuenteCB;
 	private CheckBox recordarCuenta;
 	private CheckBox.CheckBoxStyle recordarCuentaStyle;
 	private Skin skinCB;
@@ -45,7 +43,8 @@ public class TuWarGame extends ApplicationAdapter {
 	private TextButton iniciarSesion;
 	private TextButton crearCuenta;
 	private TextButton.TextButtonStyle textButtonStyle;
-	private TextureAtlas inicioAtlas;
+	private TextureAtlas inicioAtlasTB;
+	private TextureAtlas inicioAtlasCB;
 	private Skin skinTB;
 
 	private BitmapFont fuenteFP;
@@ -58,26 +57,18 @@ public class TuWarGame extends ApplicationAdapter {
 		batch = new SpriteBatch();
 
 		//Solo cargar los assests a necesitar
-		assets = new AssetManager();
-		assets.clear();
-		assets.load("data/imagenes/inicio/inicio.pack", TextureAtlas.class);
-		assets.load("data/fuentesTexto/MaiandraGD.fnt", BitmapFont.class);
-		assets.finishLoading();
 		//Acabamos de cargarlos
 
 		ancho = Gdx.graphics.getWidth();
 		alto = Gdx.graphics.getHeight();
 
-		BitmapFont fuente;
-		fuente = assets.get("data/fuentesTexto/MaiandraGD.fnt", BitmapFont.class);
-		fuenteTB = new BitmapFont(fuente.fileHandle);
-		fuenteCB = new BitmapFont(Gdx.files.internal("data/fuentesTexto/MaiandraGD.fnt"));
-		fuenteFP= new BitmapFont(Gdx.files.internal("data/fuentesTexto/MaiandraGD.fnt"));
+		fuenteTB = new BitmapFont(Gdx.files.internal("data/fuentesTexto/MaiandraGD.fnt")); // no so del mismo tamaño
+		fuenteFP = new BitmapFont(Gdx.files.internal("data/fuentesTexto/MaiandraGD.fnt")); // nuevo tamaño
 
-		inicioAtlas = assets.get("data/imagenes/inicio/inicio.pack",TextureAtlas.class);
-
-		fondoDerechaSprite = new Sprite(inicioAtlas.findRegion("FondoDerecha"));
-		fondoIzquierdaSprite = new Sprite(inicioAtlas.findRegion("FondoIzquierda"));
+		inicioAtlasTB = new TextureAtlas(Gdx.files.internal("data/imagenes/inicio/inicio.pack"));
+		inicioAtlasCB = new TextureAtlas(Gdx.files.internal("data/imagenes/inicio/inicio.pack"));
+		fondoDerechaSprite = new Sprite(inicioAtlasTB.findRegion("FondoDerecha"));
+		fondoIzquierdaSprite = new Sprite(inicioAtlasTB.findRegion("FondoIzquierda"));
 
 		stage = new Stage();
 		Gdx.input.setInputProcessor(stage);
@@ -86,7 +77,7 @@ public class TuWarGame extends ApplicationAdapter {
 		textFieldStyle = new TextField.TextFieldStyle();
 		textFieldStyle.font = fuenteTB;
 		skinTF = new Skin();
-		skinTF.addRegions(inicioAtlas);
+		skinTF.addRegions(inicioAtlasTB);
 		textFieldStyle.messageFontColor = new com.badlogic.gdx.graphics.Color(1,1,1,0.5f);
 		textFieldStyle.fontColor= new com.badlogic.gdx.graphics.Color(1,1,1,0.6f);
 		textFieldStyle.background = skinTF.getDrawable("FieldText");
@@ -119,22 +110,22 @@ public class TuWarGame extends ApplicationAdapter {
 
 		//CheckBox style
 		recordarCuentaStyle = new CheckBox.CheckBoxStyle();
-		recordarCuentaStyle.font = fuenteCB;
+		recordarCuentaStyle.font = fuenteFP;
 		skinCB = new Skin();
-		skinCB.addRegions(inicioAtlas);
+		skinCB.addRegions(inicioAtlasCB);
 		recordarCuentaStyle.fontColor = new com.badlogic.gdx.graphics.Color(0.5f,0.5f,1f,0.5f);
 		recordarCuentaStyle.checkboxOff = skinCB.getDrawable("CheckBox");
 		recordarCuentaStyle.checkboxOn = skinCB.getDrawable("CheckBoxAceptado");
 
 		//CheckBox111111
 		recordarCuenta = new CheckBox("Recordar usuario.", recordarCuentaStyle);
-		recordarCuenta.setPosition(ancho * 3/5, alto *5/16);
+		recordarCuenta.setBounds(ancho * 3/5, alto * 3/16, 10,10);
 
 		// Button style
 		textButtonStyle = new TextButton.TextButtonStyle();
 		textButtonStyle.font = fuenteTB;
 		skinTB = new Skin();
-		skinTB.addRegions(inicioAtlas);
+		skinTB.addRegions(inicioAtlasTB);
 		textButtonStyle.fontColor= new com.badlogic.gdx.graphics.Color(1,1,1,0.6f);
 		textButtonStyle.up = skinTB.getDrawable("buttonSkin");
 		textButtonStyle.down = skinTB.getDrawable("buttonSkin2");
@@ -161,7 +152,6 @@ public class TuWarGame extends ApplicationAdapter {
 		forgetPass.align(Align.center);
 
 		fuenteTB.getData().setScale(anchoNU * 0.5f/256);
-		fuenteCB.getData().setScale(anchoNU * 0.4f/256);
 		fuenteFP.getData().setScale(anchoNU * 0.4f/256);
 
 		stage.addActor(nombreUsuario);
