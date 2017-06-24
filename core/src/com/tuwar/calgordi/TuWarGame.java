@@ -70,10 +70,10 @@ public class TuWarGame extends ApplicationAdapter {
 
 		BitmapFont fuente;
 		fuente = assets.get("data/fuentesTexto/MaiandraGD.fnt", BitmapFont.class);
+		fuenteTB = new BitmapFont(fuente.fileHandle);
+		fuenteCB = new BitmapFont(Gdx.files.internal("data/fuentesTexto/MaiandraGD.fnt"));
+		fuenteFP= new BitmapFont(Gdx.files.internal("data/fuentesTexto/MaiandraGD.fnt"));
 
-		fuenteTB = fuente;
-		fuenteCB = fuente;
-		fuenteFP= fuente;
 		inicioAtlas = assets.get("data/imagenes/inicio/inicio.pack",TextureAtlas.class);
 
 		fondoDerechaSprite = new Sprite(inicioAtlas.findRegion("FondoDerecha"));
@@ -84,7 +84,7 @@ public class TuWarGame extends ApplicationAdapter {
 
 		//Estilo del textField
 		textFieldStyle = new TextField.TextFieldStyle();
-		textFieldStyle.font = fuenteFP;
+		textFieldStyle.font = fuenteTB;
 		skinTF = new Skin();
 		skinTF.addRegions(inicioAtlas);
 		textFieldStyle.messageFontColor = new com.badlogic.gdx.graphics.Color(1,1,1,0.5f);
@@ -161,8 +161,8 @@ public class TuWarGame extends ApplicationAdapter {
 		forgetPass.align(Align.center);
 
 		fuenteTB.getData().setScale(anchoNU * 0.5f/256);
-		fuenteCB.getData().setScale(anchoNU * 0.3f/256);
-		fuenteFP.getData().setScale(anchoNU * 0.5f/256);
+		fuenteCB.getData().setScale(anchoNU * 0.4f/256);
+		fuenteFP.getData().setScale(anchoNU * 0.4f/256);
 
 		stage.addActor(nombreUsuario);
 		stage.addActor(contraUsuario);
