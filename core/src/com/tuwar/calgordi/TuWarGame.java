@@ -151,7 +151,7 @@ public class TuWarGame extends ApplicationAdapter {
 		noSkin.down = null;
 		noSkin.downFontColor = new com.badlogic.gdx.graphics.Color(0.2f,0.2f,1f,0.6f);
 
-		forgetPass = new TextButton("He olvidado mi contraseña", noSkin);
+		forgetPass = new TextButton("He olvidado mi password", noSkin);
 		forgetPass.setBounds(ancho * 3/5, alto *5/16, ancho * 2/5, alto / 10);
 		forgetPass.align(Align.center);
 
