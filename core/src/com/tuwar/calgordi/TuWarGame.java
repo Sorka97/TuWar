@@ -96,7 +96,7 @@ public class TuWarGame extends ApplicationAdapter {
 		// TextField Password
 
 		contraUsuario = new TextField("", textFieldStyle);
-		contraUsuario.setMessageText("Contraseña");
+		contraUsuario.setMessageText("Password");
 		contraUsuario.setBounds(ancho * 3/5, alto *8/16, ancho * 2/5, alto /5);
 		contraUsuario.setAlignment(Align.bottomLeft);
 		contraUsuario.setPasswordMode(true);
