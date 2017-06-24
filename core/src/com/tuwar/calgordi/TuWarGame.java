@@ -109,13 +109,17 @@ public class TuWarGame extends ApplicationAdapter {
 		//CheckBox style
 		recordarCuentaStyle = new CheckBox.CheckBoxStyle();
 		recordarCuentaStyle.font = fuente;
+		recordarCuentaStyle.fontColor = new com.badlogic.gdx.graphics.Color(0.5f,0.5f,1f,0.5f);
 		recordarCuentaStyle.checkboxOff = skin.getDrawable("CheckBox");
 		recordarCuentaStyle.checkboxOn = skin.getDrawable("CheckBoxAceptado");
 
-		//CheckBox
-		recordarCuenta = new CheckBox("", recordarCuentaStyle);
-		recordarCuenta.setBounds(ancho * 53/80, alto *6/16, alto*64/360, alto*64/360);
+		//CheckBox111111
+		recordarCuenta = new CheckBox("Recordar usuario.", recordarCuentaStyle);
+		recordarCuenta.getCells().get(0).width(5f);
+		recordarCuenta.getCells().get(0).height(5f);
+		recordarCuenta.setPosition(ancho * 3/5, alto *5/16);
 
+		recordarCuentaStyle.font.getData().setScale(anchoNU * 0.2f/256);
 
 		// Button style
 		textButtonStyle = new TextButton.TextButtonStyle();
