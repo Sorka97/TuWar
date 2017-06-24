@@ -17,6 +17,7 @@ import com.badlogic.gdx.utils.Align;
 
 
 public class TuWarGame extends ApplicationAdapter {
+	//HOLA DAVID
 	private SpriteBatch batch; // Cosas que el usuario no interactua
 	private Stage stage; // Cosas que el usuario interactua
 	private AssetManager assets; // Cosas a cargar
@@ -163,7 +164,6 @@ public class TuWarGame extends ApplicationAdapter {
 		fuenteCB.getData().setScale(anchoNU * 0.3f/256);
 		fuenteFP.getData().setScale(anchoNU * 0.5f/256);
 
-
 		stage.addActor(nombreUsuario);
 		stage.addActor(contraUsuario);
 		stage.addActor(recordarCuenta);
@@ -185,7 +185,7 @@ public class TuWarGame extends ApplicationAdapter {
 		batch.end();
 		stage.draw();
 	}
-	
+
 	@Override
 	public void dispose () {
 		batch.dispose();
