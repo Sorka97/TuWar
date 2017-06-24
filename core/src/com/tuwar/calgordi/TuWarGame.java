@@ -66,6 +66,7 @@ public class TuWarGame extends ApplicationAdapter {
 
 		inicioAtlasTB = new TextureAtlas(Gdx.files.internal("data/imagenes/inicio/inicio.pack"));
 		inicioAtlasCB = new TextureAtlas(Gdx.files.internal("data/imagenes/inicio/inicio.pack"));
+
 		fondoDerechaSprite = new Sprite(inicioAtlasTB.findRegion("FondoDerecha"));
 		fondoIzquierdaSprite = new Sprite(inicioAtlasTB.findRegion("FondoIzquierda"));
 
@@ -116,7 +117,7 @@ public class TuWarGame extends ApplicationAdapter {
 		recordarCuentaStyle.checkboxOff = skinCB.getDrawable("CheckBox");
 		recordarCuentaStyle.checkboxOn = skinCB.getDrawable("CheckBoxAceptado");
 
-		//CheckBox111111
+		//CheckBox
 		recordarCuenta = new CheckBox("Recordar usuario.", recordarCuentaStyle);
 		recordarCuenta.setBounds(ancho * 3/5, alto * 3/16, 10,10);
 
