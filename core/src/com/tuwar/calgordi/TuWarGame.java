@@ -17,16 +17,19 @@ import com.badlogic.gdx.utils.Align;
 
 
 public class TuWarGame extends ApplicationAdapter {
-	private SpriteBatch batch; // Mostrar imagenes en buffer
+	private SpriteBatch batch; // Cosas que el usuario no interactua
+	private Stage stage; // Cosas que el usuario interactua
+	private AssetManager assets; // Cosas a cargar
 
-	private Stage stage;
-	private AssetManager assets;
+	// Ancho y alto de la pantalla
 	private int ancho;
 	private int alto;
 
+	// Forma Parte del batch
 	private Sprite fondoDerechaSprite ;
 	private Sprite fondoIzquierdaSprite ;
 
+	// Forma parte del actor
 	private BitmapFont fuenteTB;
 	private TextField nombreUsuario;
 	private TextField contraUsuario;
@@ -47,6 +50,7 @@ public class TuWarGame extends ApplicationAdapter {
 	private BitmapFont fuenteFP;
 	private TextButton.TextButtonStyle noSkin;
 	private TextButton forgetPass;
+
 	@Override
 	public void create () {
 		//En la partida añadir ortographic camera para que se renderize segun se mueva el jugador
