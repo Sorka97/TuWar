@@ -129,13 +129,11 @@ public class TuWarGame extends ApplicationAdapter {
 		textButtonStyle.down = skin.getDrawable("buttonSkin2");
 
 		//Botones
-		iniciarSesion = new TextButton("", textButtonStyle);
-		iniciarSesion.setText("INICIAR SESION");
+		iniciarSesion = new TextButton("INICIAR SESION", textButtonStyle);
 		iniciarSesion.setBounds(ancho * 3/5, alto *3/16, ancho * 2/5, alto / 5);
 		iniciarSesion.align(Align.center);
 
-		crearCuenta = new TextButton("", textButtonStyle);
-		crearCuenta.setText("CREAR CUENTA");
+		crearCuenta = new TextButton("CREAR CUENTA", textButtonStyle);
 		crearCuenta.setBounds(ancho * 3/5, alto /100, ancho * 2/5, alto / 5);
 		crearCuenta.align(Align.center);
 
