@@ -4,6 +4,7 @@ import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.tuwar.calgordi.CrearTabla;
 import com.tuwar.calgordi.TuWarGame;
 
 public class DesktopLauncher {
