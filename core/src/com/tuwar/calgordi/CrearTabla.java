@@ -1,5 +1,4 @@
-package com.tuwar.calgordi.desktop;
-
+package com.tuwar.calgordi;
 /**
  * Created by sergi_000 on 25/06/2017.
  */
