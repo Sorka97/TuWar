@@ -1,6 +1,7 @@
 package com.tuwar.calgordi;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 /**
@@ -8,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
  */
 public class CrearTabla {
 
+    Stage stage = new Stage();;
     Table pantalla;
     float ancho;
     float alto;
@@ -20,11 +22,11 @@ public class CrearTabla {
         ancho = Gdx.graphics.getWidth();
         alto = Gdx.graphics.getHeight();
 
-        pantalla.setBounds(0,0, ancho, alto);
-        //Distribucion en las dos partes
-        pantalla.add("parteIzquierda").setActorBounds(0,0,ancho * 3/5, alto);
-        pantalla.add("parteDerecha").setActorBounds(ancho * 3/5, 0, ancho * 2/5, alto);
-
-
+        //Tabla parte derecha
+        pantalla.setBounds(ancho * 3/5, 0, ancho * 2/5, alto);
+        stage.addActor(pantalla);
+    }
+    public void render(){
+        stage.draw();
     }
 }
