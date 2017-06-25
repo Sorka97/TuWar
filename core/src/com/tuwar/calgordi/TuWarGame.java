@@ -32,18 +32,14 @@ public class TuWarGame extends ApplicationAdapter {
 	private TextField nombreUsuario;
 	private TextField contraUsuario;
 	private TextField.TextFieldStyle textFieldStyle;
-	private Skin skinTF;
 
 	private CheckBox recordarCuenta;
 	private CheckBox.CheckBoxStyle recordarCuentaStyle;
-	private Skin skinCB;
 
 	private TextButton iniciarSesion;
 	private TextButton crearCuenta;
 	private TextButton.TextButtonStyle textButtonStyle;
-	private TextureAtlas inicioAtlasTB;
-	private TextureAtlas inicioAtlasCB;
-	private Skin skinTB;
+
 
 	private BitmapFont fuenteFP;
 	private TextButton.TextButtonStyle noSkin;
@@ -103,38 +99,34 @@ public class TuWarGame extends ApplicationAdapter {
 
 		//Tamaño de la letra y donde empiezan los inputs (Modificar donde cada uno porq es distinto segun ancho pantalla
 		float anchoNU = nombreUsuario.getWidth();
-		float altoNU = nombreUsuario.getHeight();
+
 
 
 		//CheckBox style
 		recordarCuentaStyle = new CheckBox.CheckBoxStyle();
 		recordarCuentaStyle.font = fuenteFP;
-		skinCB = new Skin();
-		skinCB.addRegions(inicioAtlasCB);
 		recordarCuentaStyle.fontColor = new com.badlogic.gdx.graphics.Color(0.5f,0.5f,1f,0.5f);
 		recordarCuentaStyle.checkboxOff = new TextureRegionDrawable(new TextureRegion(assets.get("data/imagenes/inicio/CheckBox64y64.png", Texture.class)));
 		recordarCuentaStyle.checkboxOn = new TextureRegionDrawable(new TextureRegion(assets.get("data/imagenes/inicio/CheckBoxAceptado64y64.png", Texture.class)));
 
 		//CheckBox
-		recordarCuenta = new CheckBox("Recordar usuario.", recordarCuentaStyle);
+		recordarCuenta = new CheckBox("Recordar cuenta.", recordarCuentaStyle);
 		recordarCuenta.setBounds(ancho * 3/5, alto * 3/16, 10,10);
 
 		// Button style
 		textButtonStyle = new TextButton.TextButtonStyle();
 		textButtonStyle.font = fuenteTB;
-		skinTB = new Skin();
-		skinTB.addRegions(inicioAtlasTB);
 		textButtonStyle.fontColor= new com.badlogic.gdx.graphics.Color(1,1,1,0.6f);
 		textButtonStyle.up = new TextureRegionDrawable(new TextureRegion(assets.get("data/imagenes/inicio/buttonSkin405y120.png", Texture.class)));
 		textButtonStyle.down = new TextureRegionDrawable(new TextureRegion(assets.get("data/imagenes/inicio/buttonSkinApretado405y120.png", Texture.class)));
 
 		//Botones
 		iniciarSesion = new TextButton("INICIAR SESION", textButtonStyle);
-		iniciarSesion.setBounds(ancho * 25/40, alto *3/16, ancho * 7/20, alto *5/20);
+		iniciarSesion.setBounds(ancho * 25/40, alto *3/16, ancho * 7/20, alto *7/40);
 		iniciarSesion.align(Align.center);
 
 		crearCuenta = new TextButton("CREAR CUENTA", textButtonStyle);
-		crearCuenta.setBounds(ancho * 25/40, alto/50, ancho * 7/20, alto *5/20);
+		crearCuenta.setBounds(ancho * 25/40, alto/50, ancho * 7/20, alto *7/40);
 		crearCuenta.align(Align.center);
 
 		//TextStyle del botton para recordar contra
@@ -146,11 +138,11 @@ public class TuWarGame extends ApplicationAdapter {
 		noSkin.downFontColor = new com.badlogic.gdx.graphics.Color(0.2f,0.2f,1f,0.6f);
 
 		forgetPass = new TextButton("He olvidado mi password", noSkin);
-		forgetPass.setBounds(ancho * 3/5, alto *5/16, ancho * 2/5, alto / 10);
+		forgetPass.setBounds(ancho * 25/40, alto*6/16, anchoNU, alto *1/40);
 		forgetPass.align(Align.center);
 
-		fuenteTB.getData().setScale(anchoNU * 0.7f/256);
-		fuenteFP.getData().setScale(anchoNU * 0.4f/256);
+		fuenteTB.getData().setScale(anchoNU * 0.5f/190);
+		fuenteFP.getData().setScale(anchoNU * 0.4f/190);
 
 		stage.addActor(nombreUsuario);
 		stage.addActor(contraUsuario);
