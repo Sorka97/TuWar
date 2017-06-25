@@ -55,7 +55,9 @@ public class TuWarGame extends ApplicationAdapter {
 		batch = new SpriteBatch();
 
 		assets = new AssetManager();
-
+		assets.clear();
+		assets.load("data/imagenes/inicio/buttonSkinApretado405y200.png", Skin.class);
+		assets.finishLoading();
 		//Solo cargar los assests a necesitar
 		//Acabamos de cargarlos
 
