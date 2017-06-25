@@ -4,12 +4,12 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 
 
@@ -54,11 +54,17 @@ public class TuWarGame extends ApplicationAdapter {
 		//En la partida añadir ortographic camera para que se renderize segun se mueva el jugador
 		batch = new SpriteBatch();
 
+		//Solo cargar los assests a necesitar
 		assets = new AssetManager();
 		assets.clear();
-		assets.load("data/imagenes/inicio/buttonSkinApretado405y200.png", Skin.class);
+		assets.load("data/imagenes/inicio/buttonSkinApretado405y120.png", Texture.class);
+		assets.load("data/imagenes/inicio/buttonSkin405y120.png", Texture.class);
+		assets.load("data/imagenes/inicio/CheckBox64y64.png", Texture.class);
+		assets.load("data/imagenes/inicio/CheckBoxAceptado64y64.png", Texture.class);
+		assets.load("data/imagenes/inicio/FieldText388y84.png", Texture.class);
+		assets.load("data/imagenes/inicio/FondoDerecha512y720.png", Texture.class);
+		assets.load("data/imagenes/inicio/FondoIzquierda768y720.png", Texture.class);
 		assets.finishLoading();
-		//Solo cargar los assests a necesitar
 		//Acabamos de cargarlos
 
 		ancho = Gdx.graphics.getWidth();
@@ -67,11 +73,6 @@ public class TuWarGame extends ApplicationAdapter {
 		fuenteTB = new BitmapFont(Gdx.files.internal("data/fuentesTexto/MaiandraGD.fnt")); // no so del mismo tamaño
 		fuenteFP = new BitmapFont(Gdx.files.internal("data/fuentesTexto/MaiandraGD.fnt")); // nuevo tamaño
 
-		inicioAtlasTB = new TextureAtlas(Gdx.files.internal("data/imagenes/inicio/inicio.pack"));
-		inicioAtlasCB = new TextureAtlas(Gdx.files.internal("data/imagenes/inicio/inicio.pack"));
-
-		fondoDerechaSprite = new Sprite(inicioAtlasTB.findRegion("FondoDerecha"));
-		fondoIzquierdaSprite = new Sprite(inicioAtlasTB.findRegion("FondoIzquierda"));
 
 		stage = new Stage();
 		Gdx.input.setInputProcessor(stage);
@@ -79,16 +80,14 @@ public class TuWarGame extends ApplicationAdapter {
 		//Estilo del textField
 		textFieldStyle = new TextField.TextFieldStyle();
 		textFieldStyle.font = fuenteTB;
-		skinTF = new Skin();
-		skinTF.addRegions(inicioAtlasTB);
 		textFieldStyle.messageFontColor = new com.badlogic.gdx.graphics.Color(1,1,1,0.5f);
 		textFieldStyle.fontColor= new com.badlogic.gdx.graphics.Color(1,1,1,0.6f);
-		textFieldStyle.background = skinTF.getDrawable("FieldText");
+		textFieldStyle.background = new TextureRegionDrawable(new TextureRegion(assets.get("data/imagenes/inicio/FieldText388y84.png", Texture.class)));
 
 		//Texts fields
 		nombreUsuario = new TextField("", textFieldStyle);
 		nombreUsuario.setMessageText("Nombre usuario");
-		nombreUsuario.setBounds(ancho * 3/5, alto *11/16, ancho * 2/5, alto / 5);
+		nombreUsuario.setBounds(ancho * 13/20, alto *13/16, ancho * 3/10, alto *2/20);
 		nombreUsuario.setAlignment(Align.bottomLeft);
 		nombreUsuario.setMaxLength(15);
 
@@ -96,7 +95,7 @@ public class TuWarGame extends ApplicationAdapter {
 
 		contraUsuario = new TextField("", textFieldStyle);
 		contraUsuario.setMessageText("Password");
-		contraUsuario.setBounds(ancho * 3/5, alto *8/16, ancho * 2/5, alto /5);
+		contraUsuario.setBounds(ancho * 13/20, alto *11/16, ancho * 3/10, alto *2/20);
 		contraUsuario.setAlignment(Align.bottomLeft);
 		contraUsuario.setPasswordMode(true);
 		contraUsuario.setPasswordCharacter('x');
@@ -105,11 +104,7 @@ public class TuWarGame extends ApplicationAdapter {
 		//Tamaño de la letra y donde empiezan los inputs (Modificar donde cada uno porq es distinto segun ancho pantalla
 		float anchoNU = nombreUsuario.getWidth();
 		float altoNU = nombreUsuario.getHeight();
-		textFieldStyle.font.getData().setScale(anchoNU * 0.55f/256);
-		textFieldStyle.background.setLeftWidth(anchoNU*2/9 );
-		textFieldStyle.background.setBottomHeight(altoNU*2/9);
-		textFieldStyle.background.setTopHeight(altoNU*2/9);
-		textFieldStyle.background.setRightWidth(anchoNU*2/9);
+
 
 		//CheckBox style
 		recordarCuentaStyle = new CheckBox.CheckBoxStyle();
@@ -117,8 +112,8 @@ public class TuWarGame extends ApplicationAdapter {
 		skinCB = new Skin();
 		skinCB.addRegions(inicioAtlasCB);
 		recordarCuentaStyle.fontColor = new com.badlogic.gdx.graphics.Color(0.5f,0.5f,1f,0.5f);
-		recordarCuentaStyle.checkboxOff = skinCB.getDrawable("CheckBox");
-		recordarCuentaStyle.checkboxOn = skinCB.getDrawable("CheckBoxAceptado");
+		recordarCuentaStyle.checkboxOff = new TextureRegionDrawable(new TextureRegion(assets.get("data/imagenes/inicio/CheckBox64y64.png", Texture.class)));
+		recordarCuentaStyle.checkboxOn = new TextureRegionDrawable(new TextureRegion(assets.get("data/imagenes/inicio/CheckBoxAceptado64y64.png", Texture.class)));
 
 		//CheckBox
 		recordarCuenta = new CheckBox("Recordar usuario.", recordarCuentaStyle);
@@ -130,16 +125,16 @@ public class TuWarGame extends ApplicationAdapter {
 		skinTB = new Skin();
 		skinTB.addRegions(inicioAtlasTB);
 		textButtonStyle.fontColor= new com.badlogic.gdx.graphics.Color(1,1,1,0.6f);
-		textButtonStyle.up = skinTB.getDrawable("buttonSkin");
-		textButtonStyle.down = skinTB.getDrawable("buttonSkin2");
+		textButtonStyle.up = new TextureRegionDrawable(new TextureRegion(assets.get("data/imagenes/inicio/buttonSkin405y120.png", Texture.class)));
+		textButtonStyle.down = new TextureRegionDrawable(new TextureRegion(assets.get("data/imagenes/inicio/buttonSkinApretado405y120.png", Texture.class)));
 
 		//Botones
 		iniciarSesion = new TextButton("INICIAR SESION", textButtonStyle);
-		iniciarSesion.setBounds(ancho * 3/5, alto *3/16, ancho * 2/5, alto / 5);
+		iniciarSesion.setBounds(ancho * 25/40, alto *3/16, ancho * 7/20, alto *5/20);
 		iniciarSesion.align(Align.center);
 
 		crearCuenta = new TextButton("CREAR CUENTA", textButtonStyle);
-		crearCuenta.setBounds(ancho * 3/5, alto /100, ancho * 2/5, alto / 5);
+		crearCuenta.setBounds(ancho * 25/40, alto/50, ancho * 7/20, alto *5/20);
 		crearCuenta.align(Align.center);
 
 		//TextStyle del botton para recordar contra
@@ -154,7 +149,7 @@ public class TuWarGame extends ApplicationAdapter {
 		forgetPass.setBounds(ancho * 3/5, alto *5/16, ancho * 2/5, alto / 10);
 		forgetPass.align(Align.center);
 
-		fuenteTB.getData().setScale(anchoNU * 0.5f/256);
+		fuenteTB.getData().setScale(anchoNU * 0.7f/256);
 		fuenteFP.getData().setScale(anchoNU * 0.4f/256);
 
 		stage.addActor(nombreUsuario);
@@ -173,8 +168,8 @@ public class TuWarGame extends ApplicationAdapter {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		batch.draw(fondoDerechaSprite, ancho * 3 / 5,0,ancho * 2/5, alto);
-		batch.draw(fondoIzquierdaSprite, 0, 0, ancho * 3/5, alto);
+		batch.draw(assets.get("data/imagenes/inicio/FondoDerecha512y720.png", Texture.class), ancho * 3 / 5,0,ancho * 2/5, alto);
+		batch.draw(assets.get("data/imagenes/inicio/FondoIzquierda768y720.png", Texture.class), 0, 0, ancho * 3/5, alto);
 		batch.end();
 		stage.draw();
 	}
